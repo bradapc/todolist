@@ -38,3 +38,51 @@ h1 {
     flex-direction: column;
     padding: 16px;
 }
+
+.new-note-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.note {
+    min-height: 70px;
+    background-color: grey;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    word-wrap: break-word;
+}
+
+.note-title {
+    margin: 0;
+}
+
+.note p {
+    margin: 0;
+}
+
+.prio-circle {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px outset black;
+}
+
+.notes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.note-header-container {
+    display: flex;
+    justify-content: space-between;
+}

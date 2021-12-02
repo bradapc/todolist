@@ -16,7 +16,10 @@ h1 {
 .project-container {
     flex: 1;
     background-color: rgb(5, 115, 179);
-    padding: 16px;
+}
+
+.project-title {
+    margin: 16px;
 }
 
 .note-container {
@@ -141,4 +144,19 @@ h1 {
 
 .check-note:hover {
     background-color: #d1cfcf
+}
+
+.projects-list {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.project {
+    padding: 8px;
+    word-wrap: break-word;
+}
+
+.project:hover {
+    background-color: silver;
 }

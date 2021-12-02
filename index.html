@@ -11,7 +11,30 @@
             </div>
             <div class='note-container'>
                 <div class='note-manager'>
-                    <h1 class='manager-title'>Project Manager</h1>
+                    <h1 class='manager-title'>Project Name</h1>
+                    <div class='new-note-container'>
+                            <div class='input-container'>
+                                <label for='title'>Title</label>
+                                <input type='text' id='title' name='title'>
+                            </div>
+                            <div class='input-container'>
+                                <label for='desc'>Description</label>
+                                <input type='text' id='desc' name='desc'>
+                            </div>
+                            <div class='input-container'>
+                                <label for='date'>Due</label>
+                                <input type='date' id='due' name='due'>
+                            </div>
+                            <div class='input-container'>
+                                <label for='prio'>Priority</label>
+                                <select name='prio' id='prio'>
+                                    <option value='low' style='color:green'>Low</option>
+                                    <option value='medium' style='color:rgb(189, 189, 4)'>Medium</option>
+                                    <option value='high' style='color: red'>High</option>
+                                </select>
+                            </div>
+                            <button class='add-note'>+</button>
+                    </div>
                 </div>
                 <div class='note-full'>
                     <div class='notes'>

@@ -58,6 +58,11 @@ h1 {
     flex-direction: column;
     border-radius: 16px;
     word-wrap: break-word;
+    border: 1px solid transparent;
+}
+
+.note:hover {
+    border: 1px solid black;
 }
 
 .note-title {
@@ -85,4 +90,21 @@ h1 {
 .note-header-container {
     display: flex;
     justify-content: space-between;
+}
+
+.note-options-container {
+    display: flex;
+    justify-content: end;
+}
+
+.remove-note-button {
+    width: 25px;
+    height: 25px;
+    background-color: #d11a2a;
+    border-radius: 50%;
+    border: none;
+}
+
+.remove-note-button:hover {
+    background-color: #d12837;
 }

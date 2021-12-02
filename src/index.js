@@ -4,7 +4,11 @@ const notehandler = (() => {
     const createNote = function(title, description, dueDate, priority, notes, checklist) {
         defaultProject.items.push({title, description, dueDate, priority, notes, checklist});
     }
-    return {createNote};
+    function removeNote(noteID) {
+        defaultProject.items.splice(noteID, 1);
+        domhandler.updateNoteLibrary();
+    }
+    return {createNote, removeNote};
 })();
 
 const projecthandler = (() => {
@@ -32,12 +36,16 @@ const domhandler = (() => {
         noteHolder.querySelectorAll('div').forEach(removeExisting => removeExisting.remove());
         for(let i = 0; i < defaultProject.items.length; i++) {
             const newNoteDOM = document.createElement('div');
+            newNoteDOM.setAttribute('note-id', i);
             const headerContainer = document.createElement('div');
             headerContainer.classList.add('note-header-container');
             const bodyContainer = document.createElement('div');
+            const optionsContainer = document.createElement('div');
+            optionsContainer.classList.add('note-options-container');
             bodyContainer.classList.add('note-body-container');
             newNoteDOM.appendChild(headerContainer);
             newNoteDOM.appendChild(bodyContainer);
+            newNoteDOM.appendChild(optionsContainer);
             const noteTitle = document.createElement('h2');
             noteTitle.classList.add('note-title');
             noteTitle.textContent = defaultProject.items[i].title;
@@ -59,9 +67,30 @@ const domhandler = (() => {
                 priority.style.backgroundColor = 'red';
             }
             headerContainer.appendChild(priority);
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove-note-button');
+            removeButton.textContent = 'X';
+            removeButton.style.display = 'none';
+            optionsContainer.appendChild(removeButton);
             newNoteDOM.classList.add('note');
             noteHolder.appendChild(newNoteDOM);
         }
+        removeButtonHandler();
+    }
+    function removeButtonHandler() {
+        const getNotes = document.querySelectorAll('.note');
+        getNotes.forEach(note => note.addEventListener('mouseenter', () => {
+            const removeButton = note.querySelector('.remove-note-button');
+            removeButton.style.display = 'block';
+        }));
+        getNotes.forEach(note => note.addEventListener('mouseleave', () => {
+            const removeButton = note.querySelector('.remove-note-button');
+            removeButton.style.display = 'none';
+        }))
+        const getRemoveButtons = document.querySelectorAll('.remove-note-button');
+        getRemoveButtons.forEach(button => button.addEventListener('click', () => {
+            notehandler.removeNote(button.closest('.note').getAttribute('note-id'));
+        }))
     }
     return {updateNoteLibrary};
 })();

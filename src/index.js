@@ -16,7 +16,17 @@ const notehandler = (() => {
         }
         domhandler.updateNoteLibrary();
     }
-    return {createNote, removeNote, updateDone};
+    function updatePrio(noteID) {
+        if(defaultProject.items[noteID].priority === 'low') {
+            defaultProject.items[noteID].priority = 'medium';
+        } else if(defaultProject.items[noteID].priority === 'medium') {
+            defaultProject.items[noteID].priority = 'high';
+        } else if(defaultProject.items[noteID].priority === 'high') {
+            defaultProject.items[noteID].priority = 'low';
+        }
+        domhandler.updateNoteLibrary();
+    }
+    return {createNote, removeNote, updateDone, updatePrio};
 })();
 
 const projecthandler = (() => {
@@ -93,6 +103,7 @@ const domhandler = (() => {
         }
         removeButtonHandler();
         checkBoxHandler();
+        priorityHandler();
     }
     function removeButtonHandler() {
         const getNotes = document.querySelectorAll('.note');
@@ -113,6 +124,12 @@ const domhandler = (() => {
         const getTicks = document.querySelectorAll('.check-note');
         getTicks.forEach(tick => tick.addEventListener('click', () => {
             notehandler.updateDone(tick.closest('.note').getAttribute('note-id'));
+        }));
+    }
+    function priorityHandler() {
+        const getPrio = document.querySelectorAll('.prio-circle');
+        getPrio.forEach(prio => prio.addEventListener('click', () => {
+            notehandler.updatePrio(prio.closest('.note').getAttribute('note-id'))
         }));
     }
     return {updateNoteLibrary};

@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: rgb(190, 217, 226);
+    border-radius: 16px;
+}
+
+.project-container {
+    flex: 1;
+    background-color: rgb(5, 115, 179);
+    padding: 16px;
+    border: 1px solid black;
+}
+
+.note-container {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+}
+
+.note-manager {
+    padding: 16px;
+    border: 1px solid black;
+    border-left: 0;
+    border-radius: 0 16px 16px 0;
+}
+
+.note-full {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}

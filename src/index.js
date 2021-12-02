@@ -23,7 +23,12 @@ projecthandler.addProject(projectTwo);
 
 const notehandler = (() => {
     const createNote = function(title, description, dueDate, priority, notes, checklist) {
-        projecthandler.projects[projecthandler.currentProjectID].items.push({title, description, dueDate, priority, notes, checklist});
+        if(title.length >= 1 && description.length >= 1 && dueDate.length >= 1) {
+            projecthandler.projects[projecthandler.currentProjectID].items.push({title, description, dueDate, priority, notes, checklist});
+            domhandler.clearNoteFields();
+        } else {
+            alert('Please fill out all fields before adding a note.');
+        }
     }
     function removeNote(noteID) {
         projecthandler.projects[projecthandler.currentProjectID].items.splice(noteID, 1);
@@ -185,5 +190,9 @@ const domhandler = (() => {
         }
         updateProjectLibrary();
     }
-    return {updateNoteLibrary, updateProjectLibrary};
+    function clearNoteFields() {
+        const inputfields = document.querySelectorAll('input');
+        inputfields.forEach(clear => clear.value = '');
+    }
+    return {updateNoteLibrary, updateProjectLibrary, clearNoteFields};
 })();

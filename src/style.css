@@ -170,6 +170,7 @@ h1 {
     border: none;
     font-size: 20px;
     font-weight: 700;
+    margin-top: 4px;
 }
 
 .project-add-container {
@@ -203,4 +204,13 @@ h1 {
 
 .project-add-confirm:hover {
     color:rgb(60, 255, 60)
+}
+
+input[type=text], input[type=date], select {
+    background-color: rgb(255, 255, 255);
+    height: 20px;
+    border: none;
+    padding: none;
+    margin: none;
+    border-radius: 8px;
 }

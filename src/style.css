@@ -43,6 +43,12 @@ h1 {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.new-note-button-container {
+    display: flex;
+    margin-top: 8px;
 }
 
 .input-container {
@@ -94,17 +100,47 @@ h1 {
 
 .note-options-container {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 }
 
 .remove-note-button {
     width: 25px;
     height: 25px;
-    background-color: #d11a2a;
+    background-color: #e0041a;
     border-radius: 50%;
     border: none;
 }
 
 .remove-note-button:hover {
     background-color: #d12837;
+}
+
+.add-note {
+    width: 28px;
+    height: 28px;
+    background-color: #02c41f;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.add-note:hover {
+    background-color: #02e324;
+}
+
+.check-note {
+    width: 25px;
+    height: 25px;
+    background-color: silver;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-size: 22px;
+    text-align: center;
+    color: green;
+    cursor: default;
+}
+
+.check-note:hover {
+    background-color: #d1cfcf
 }

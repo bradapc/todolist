@@ -8,7 +8,15 @@ const notehandler = (() => {
         defaultProject.items.splice(noteID, 1);
         domhandler.updateNoteLibrary();
     }
-    return {createNote, removeNote};
+    function updateDone(noteID) {
+        if(defaultProject.items[noteID].checklist === false) {
+            defaultProject.items[noteID].checklist = true;
+        } else if(defaultProject.items[noteID].checklist === true) {
+            defaultProject.items[noteID].checklist = false;
+        }
+        domhandler.updateNoteLibrary();
+    }
+    return {createNote, removeNote, updateDone};
 })();
 
 const projecthandler = (() => {
@@ -27,7 +35,7 @@ const domhandler = (() => {
         const dueInput = document.querySelector('#due');
         const prioInput = document.querySelector('#prio');
         addNoteButton.addEventListener('click', () => {
-            notehandler.createNote(titleInput.value, descInput.value, dueInput.value, prioInput.value);
+            notehandler.createNote(titleInput.value, descInput.value, dueInput.value, prioInput.value, '', false);
             updateNoteLibrary();
         });
     })();
@@ -70,27 +78,42 @@ const domhandler = (() => {
             const removeButton = document.createElement('button');
             removeButton.classList.add('remove-note-button');
             removeButton.textContent = 'X';
-            removeButton.style.display = 'none';
+            removeButton.style.visibility = 'hidden';
+            const checklistButton = document.createElement('div');
+            checklistButton.classList.add('check-note');
+            if(defaultProject.items[i].checklist === false){
+                checklistButton.textContent = '';
+            } else if(defaultProject.items[i].checklist === true) {
+                checklistButton.textContent = '✔';
+            }
+            optionsContainer.appendChild(checklistButton);
             optionsContainer.appendChild(removeButton);
             newNoteDOM.classList.add('note');
             noteHolder.appendChild(newNoteDOM);
         }
         removeButtonHandler();
+        checkBoxHandler();
     }
     function removeButtonHandler() {
         const getNotes = document.querySelectorAll('.note');
         getNotes.forEach(note => note.addEventListener('mouseenter', () => {
             const removeButton = note.querySelector('.remove-note-button');
-            removeButton.style.display = 'block';
+            removeButton.style.visibility = 'visible';
         }));
         getNotes.forEach(note => note.addEventListener('mouseleave', () => {
             const removeButton = note.querySelector('.remove-note-button');
-            removeButton.style.display = 'none';
+            removeButton.style.visibility = 'hidden';
         }))
         const getRemoveButtons = document.querySelectorAll('.remove-note-button');
         getRemoveButtons.forEach(button => button.addEventListener('click', () => {
             notehandler.removeNote(button.closest('.note').getAttribute('note-id'));
         }))
+    }
+    function checkBoxHandler() {
+        const getTicks = document.querySelectorAll('.check-note');
+        getTicks.forEach(tick => tick.addEventListener('click', () => {
+            notehandler.updateDone(tick.closest('.note').getAttribute('note-id'));
+        }));
     }
     return {updateNoteLibrary};
 })();

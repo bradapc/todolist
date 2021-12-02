@@ -158,7 +158,32 @@ const domhandler = (() => {
             projectDIV.addEventListener('click', () => projecthandler.switchProject(projectDIV.getAttribute('project-id')));
             projectContainer.appendChild(projectDIV);
         }
+        const addProjectButton = document.querySelector('.add-project');
+        addProjectButton.addEventListener('click', addProjectPopup);
     }
     updateProjectLibrary();
+    function addProjectPopup() {
+        const proj = document.querySelector('.project-input');
+        const style = window.getComputedStyle(proj).getPropertyValue('display');
+        if(style == 'none') {
+            proj.style.display = 'flex';
+        } else if(style == 'flex') {
+            proj.style.display = 'none';
+        }
+        const projectAddConfirm = document.querySelector('.project-add-confirm');
+        projectAddConfirm.addEventListener('click', confirmAddProject)
+    }
+    function confirmAddProject() {
+        const projText = document.querySelector('#proj');
+        if(projText.value.length >= 1 && projText.value.length <= 20) {
+            const newProj = projecthandler.createProject(projText.value, []);
+            projecthandler.addProject(newProj);
+            projText.value = '';
+            document.querySelector('.project-input').style.display = 'none';
+        } else {
+            alert('Please enter a name between 1 and 20 characters');
+        }
+        updateProjectLibrary();
+    }
     return {updateNoteLibrary, updateProjectLibrary};
 })();

@@ -20,6 +20,7 @@ h1 {
 
 .project-title {
     margin: 16px;
+    text-align: center;
 }
 
 .note-container {
@@ -159,4 +160,47 @@ h1 {
 
 .project:hover {
     background-color: silver;
+}
+
+.add-project {
+    width: 28px;
+    height: 28px;
+    background-color: #02c41f;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.project-add-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-input {
+    margin: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#proj {
+    padding: 0;
+    height: 22px;
+    border: none;
+}
+
+.project-add-confirm {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    color: rgb(39, 226, 39);
+    border: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.project-add-confirm:hover {
+    color:rgb(60, 255, 60)
 }

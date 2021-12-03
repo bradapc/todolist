@@ -1,4 +1,5 @@
 import './style.css';
+import TrashIcon from './trash.png';
 
 const projecthandler = (() => {
     let projects = [];
@@ -14,7 +15,11 @@ const projecthandler = (() => {
         domhandler.updateProjectLibrary();
         domhandler.updateNoteLibrary();
     }
-    return {createProject, addProject, projects, currentProjectID, switchProject};
+    function deleteProject(projectID) {
+        projecthandler.projects.splice(projectID, 1);
+        switchProject(0);
+    }
+    return {createProject, addProject, projects, currentProjectID, switchProject, deleteProject};
 })();
 const defaultProject = projecthandler.createProject('Default Project', []);
 projecthandler.addProject(defaultProject);
@@ -165,6 +170,7 @@ const domhandler = (() => {
         }
         const addProjectButton = document.querySelector('.add-project');
         addProjectButton.addEventListener('click', addProjectPopup);
+        projectRemoveHandler();
     }
     updateProjectLibrary();
     function addProjectPopup() {
@@ -193,6 +199,26 @@ const domhandler = (() => {
     function clearNoteFields() {
         const inputfields = document.querySelectorAll('input');
         inputfields.forEach(clear => clear.value = '');
+    }
+    function projectRemoveHandler() {
+        const projDiv = document.querySelectorAll('.project');
+        projDiv.forEach(proj => proj.addEventListener('mouseenter', () => {
+            const deleteProj = document.createElement('div');
+            deleteProj.classList.add('delete-proj');
+            const trashIcon = new Image();
+            trashIcon.src = TrashIcon;
+            trashIcon.style.width = '18px';
+            trashIcon.style.height = '18px';
+            deleteProj.appendChild(trashIcon);
+            proj.appendChild(deleteProj);
+            deleteProj.addEventListener('click', () => {
+                projecthandler.deleteProject(deleteProj.closest('.project').getAttribute('project-id'));
+            })
+        }));
+        projDiv.forEach(proj => proj.addEventListener('mouseleave', () => {
+            const deleteProj = document.querySelector('.delete-proj')
+            deleteProj.remove();
+        }))
     }
     return {updateNoteLibrary, updateProjectLibrary, clearNoteFields};
 })();

@@ -70,7 +70,7 @@ h1 {
 }
 
 .note:hover {
-    border: 1px solid black;
+    background-color: rgb(160, 159, 159);
 }
 
 .note-title {
@@ -86,7 +86,6 @@ h1 {
     height: 15px;
     background-color: white;
     border-radius: 50%;
-    border: 1px outset black;
 }
 
 .notes {
@@ -120,7 +119,7 @@ h1 {
 .add-note {
     width: 28px;
     height: 28px;
-    background-color: #02c41f;
+    background-color: #00a1b6;
     border-radius: 50%;
     border: none;
     font-size: 20px;
@@ -128,7 +127,7 @@ h1 {
 }
 
 .add-note:hover {
-    background-color: #02e324;
+    background-color: #03bfd8;
 }
 
 .check-note {
@@ -136,7 +135,6 @@ h1 {
     height: 25px;
     background-color: silver;
     border-radius: 50%;
-    border: 1px solid black;
     font-size: 22px;
     text-align: center;
     color: green;
@@ -167,12 +165,16 @@ h1 {
 .add-project {
     width: 28px;
     height: 28px;
-    background-color: #02c41f;
+    background-color: #00a1b6;
     border-radius: 50%;
     border: none;
     font-size: 20px;
     font-weight: 700;
     margin-top: 4px;
+}
+
+.add-project:hover {
+    background-color: #03bfd8;
 }
 
 .project-add-container {

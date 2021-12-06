@@ -16,8 +16,12 @@ const projecthandler = (() => {
         domhandler.updateNoteLibrary();
     }
     function deleteProject(projectID) {
-        projecthandler.projects.splice(projectID, 1);
-        switchProject(0);
+        if(projecthandler.projects.length > 1){
+            projecthandler.projects.splice(projectID, 1);
+            switchProject(0);
+        } else {
+            alert('Cannot delete project, you must have at least one!');
+        }
     }
     return {createProject, addProject, projects, currentProjectID, switchProject, deleteProject};
 })();
